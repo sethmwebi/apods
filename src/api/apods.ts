@@ -1,6 +1,6 @@
-import { Apod } from "../types";
+import { Apod } from '../types';
 
-const API_KEY = process.env.EXPO_PUBLIC_API_KEY || "DEMO_KEY";
+const API_KEY = process.env.EXPO_PUBLIC_API_KEY || 'DEMO_KEY';
 const BASE_URL = `https://api.nasa.gov/planetary/apod?api_key=${API_KEY}`;
 
 export const fetchApods = async (): Promise<Apod[]> => {
@@ -10,7 +10,17 @@ export const fetchApods = async (): Promise<Apod[]> => {
     );
     return await res.json();
   } catch (e) {
-    console.log("Error fetching pictures: ", e.message);
+    console.log('Error fetching pictures: ', e.message);
     return [];
+  }
+};
+
+export const fetchApod = async (date: string): Promise<Apod> => {
+  try {
+    const res = await fetch(`${BASE_URL}&date=${date}`);
+    return await res.json();
+  } catch (e) {
+    console.log('Error fetching pictures: ', e.message);
+    return null;
   }
 };
