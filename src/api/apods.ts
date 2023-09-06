@@ -15,7 +15,7 @@ export const fetchApods = async (): Promise<Apod[]> => {
   }
 };
 
-export const fetchApod = async (date: string): Promise<Apod> => {
+export const fetchApod = async (date: string | string[]): Promise<Apod> => {
   try {
     const res = await fetch(`${BASE_URL}&date=${date}`);
     return await res.json();
